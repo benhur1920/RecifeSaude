@@ -3,7 +3,7 @@ from pathlib import Path
 from streamlit_option_menu import option_menu
 from utils import dashboards, sobre, dataframe
 from datetime import date
-from utils.totalizadores import hoje,df, df_filtrado
+from utils.totalizadores import hoje,df
 
 st.set_page_config(
     layout="wide",
@@ -14,8 +14,8 @@ st.set_page_config(
 # Configurações Estruturais
 diretorio = Path(__file__).parent if "__file__" in locals() else Path.cwd()
 arquivo_css = diretorio / "styles" / "geral.css"
-arquivo_pdf = diretorio / "assets" / "CurriculoBen-Hur.pdf"
-arquivo_img = diretorio / "assets" / "foto.jpeg"
+#arquivo_pdf = diretorio / "assets" / "CurriculoBen-Hur.pdf"
+#arquivo_img = diretorio / "assets" / "foto.jpeg"
 
 with open("styles/geral.css", "r", encoding="utf-8") as c:
     st.markdown(f"<style>{c.read()}</style>", unsafe_allow_html=True)
