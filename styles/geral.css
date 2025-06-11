@@ -1,0 +1,75 @@
+
+:root {
+        
+    --background: #fcf7ff;
+    --siderbar: #86c2d4;
+    --texto-claro: #031f72;
+  }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Readex Pro', sans-serif !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: white !important;
+    font-weight: 500;
+}
+
+a:hover{
+    color: #f0510d!important;
+    text-decoration: none;
+}
+
+p {
+    color: var(--texto-claro) !important;
+    margin-top: 20px;
+    font-size: 20px !important;
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+hr {
+    margin-top: 0px;
+    margin-bottom: 5%;
+}
+
+body {
+    background-color: #e3f2fd;
+}
+
+h1, h2, h3 {
+    color: var(--texto-claro) !important;
+}
+
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+
+/* Cor de fundo principal */
+.stApp {
+    background-color: var(--background); /* verde clarinho, por exemplo */
+}
+
+/* Cor de fundo da sidebar */
+section[data-testid="stSidebar"] {
+    background-color: var(--siderbar);  /* Exemplo: azul clarinho */
+}
+[data-testid="metric_usf"] .css-1v0mbdj {
+    color: #d33682 !important;
+}
+
+.custom-menu-title {
+    font-size: 22px;
+    color: #031f72;  /* Laranja */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
