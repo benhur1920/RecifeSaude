@@ -2,7 +2,7 @@
 :root {
         
     --background: #fcf7ff;
-    --siderbar: #86c2d4;
+    --sidebar: #86c2d4;
     --texto-claro: #031f72;
   }
 
@@ -56,12 +56,12 @@ header {visibility: hidden;}
 
 /* Cor de fundo principal */
 .stApp {
-    background-color: var(--background); /* verde clarinho, por exemplo */
+    background-color: var(--background) !important; /* verde clarinho, por exemplo */
 }
 
 /* Cor de fundo da sidebar */
 section[data-testid="stSidebar"] {
-    background-color: var(--siderbar);  /* Exemplo: azul clarinho */
+    background-color: var(--sidebar) !important;  /* Exemplo: azul clarinho */
 }
 [data-testid="metric_usf"] .css-1v0mbdj {
     color: #d33682 !important;

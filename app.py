@@ -17,12 +17,9 @@ arquivo_css = diretorio / "styles" / "geral.css"
 #arquivo_pdf = diretorio / "assets" / "CurriculoBen-Hur.pdf"
 #arquivo_img = diretorio / "assets" / "foto.jpeg"
 
-with open("styles/geral.css", "r", encoding="utf-8") as c:
+with open(arquivo_css, "r", encoding="utf-8") as c:
     st.markdown(f"<style>{c.read()}</style>", unsafe_allow_html=True)
 
-
-with open(arquivo_css) as c:
-    st.markdown("<style>{}</style>".format(c.read()), unsafe_allow_html=True ) #Importa as informaçoes que estiverem no arquivo css
 
 
 
