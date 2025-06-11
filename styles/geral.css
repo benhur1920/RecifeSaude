@@ -63,9 +63,6 @@ header {visibility: hidden;}
 section[data-testid="stSidebar"] {
     background-color: var(--sidebar) !important;  /* Exemplo: azul clarinho */
 }
-[data-testid="metric_usf"] .css-1v0mbdj {
-    color: #d33682 !important;
-}
 
 .custom-menu-title {
     font-size: 22px;
