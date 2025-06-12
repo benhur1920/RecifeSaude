@@ -4,23 +4,18 @@ from streamlit_option_menu import option_menu
 from utils import dashboards, sobre, dataframe
 from datetime import date
 from utils.totalizadores import hoje,df
+from utils.marcadores import texto,sidebar, background
 
 st.set_page_config(
     layout="wide",
     page_title="SaudeRecife")
 
-
-
 # Configurações Estruturais
-diretorio = Path(__file__).parent if "__file__" in locals() else Path.cwd()
-arquivo_css = diretorio / "styles" / "geral.css"
-#arquivo_pdf = diretorio / "assets" / "CurriculoBen-Hur.pdf"
-#arquivo_img = diretorio / "assets" / "foto.jpeg"
+ROOT_DIR = Path(__file__).resolve().parent
+CSS_FILE = ROOT_DIR / "styles" / "geral.css"
 
-with open(arquivo_css, "r", encoding="utf-8") as c:
-    st.markdown(f"<style>{c.read()}</style>", unsafe_allow_html=True)
-
-
+with open(CSS_FILE, "r", encoding="utf-8") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
 # Mostra a data mais recente, importar dos totalizadores.py
@@ -38,9 +33,7 @@ def titulo_pagina():
         st.markdown(
             """
             <div style="margin-top: 40px;">
-                <a href="https://dados.recife.pe.gov.br/" target="_blank"
-                style="text-decoration: none; color: white; background-color: #86c2d4;
-                padding: 8px 12px; border-radius: 5px; display: inline-block;">
+                <a href="https://dados.recife.pe.gov.br/" target="_blank">
                     🔗 Acessar fonte dos dados
                 </a>
             </div>
@@ -67,21 +60,21 @@ def criacao_navegacao_e_filtros():
         icons=["info-circle", "bar-chart", "table"],
         default_index=0,
         styles={
-            "container": {"background-color": "#86c2d4"},
+            "container": {"background-color": sidebar},
             "nav-link": {
                 "color": "#031f72",
                 "font-size": "18px",
-                "hover-color": "#f16a10",
+                "hover-color": texto,
             },
             "nav-link-selected": {
-                "background-color": "#fcf7ff",
-                "color": "#031f72",
+                "background-color": "#ffffff",
+                "color": texto,
             },
         }
     )
 
         # Título dos filtros
-        st.markdown("<h1 style='color: #0b3d91;'>Filtros</h1>", unsafe_allow_html=True)
+        st.markdown("<h1>Filtros</h1>", unsafe_allow_html=True)
 
         # Filtro de Opção
         opcoes_disponiveis = sorted(df_filtrado['Opção'].dropna().unique())

@@ -1,6 +1,7 @@
 import matplotlib as pl
 import plotly.express as px
 import streamlit as st
+from utils.marcadores import texto, background, sidebar
 
 
 
@@ -22,11 +23,11 @@ def grafico_zona(df):
                 'xanchor': 'center',
                 'font': {
                     'size': 22,
-                    'color': '#0b3d91'
+                    'color': texto
                 }
             },
-            plot_bgcolor='#fcf7ff',
-            paper_bgcolor='#fcf7ff',
+            plot_bgcolor= background,
+            paper_bgcolor= background,
         )
         return fig
 
@@ -49,11 +50,11 @@ def grafico_bairro(df):
                 'xanchor': 'center',
                 'font': {
                     'size': 22,
-                    'color':  '#0b3d91'
+                    'color':  texto
                 }
             },
-            plot_bgcolor='#fcf7ff',
-            paper_bgcolor='#fcf7ff',
+            plot_bgcolor= background,
+            paper_bgcolor= background,
         )
         return fig1
 
@@ -78,11 +79,11 @@ def grafico_opcao(df):
             'xanchor': 'center',
             'font': {
                 'size': 22,
-                'color':  '#0b3d91'
+                'color':  texto
             }
         },
-        plot_bgcolor='#fcf7ff',
-        paper_bgcolor='#fcf7ff',
+        plot_bgcolor=background,
+        paper_bgcolor=background,
     )
 
     return fig4
@@ -119,11 +120,11 @@ def grafico_mapa(df):
             'xanchor': 'center',
             'font': {
                 'size': 22,
-                'color': '#0b3d91'
+                'color': texto
             }
         },
-        plot_bgcolor='#fcf7ff',
-        paper_bgcolor='#fcf7ff',
+        plot_bgcolor=background,
+        paper_bgcolor=background,
         margin=dict(t=100, b=20, l=10, r=10)  # ← aqui você ajusta o espaço acima (top=t),
     )
 
@@ -147,11 +148,11 @@ def grafico_especialidade(df):
                 'xanchor': 'center',
                 'font': {
                     'size': 22,
-                    'color': 'white'
+                    'color': texto
                 }
             },  # <--- essa vírgula aqui é importante para separar os parâmetros
-            plot_bgcolor='#0b3d91',
-            paper_bgcolor='#0b3d91',
+            plot_bgcolor=background,
+            paper_bgcolor=background,
             font=dict(color='white'),
             xaxis=dict(showgrid=False, zeroline=False, color='white'),
             yaxis=dict(showgrid=False, zeroline=False, color='white')

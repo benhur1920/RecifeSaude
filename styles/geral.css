@@ -1,8 +1,8 @@
 
 :root {
         
-    --background: #fcf7ff;
-    --sidebar: #86c2d4;
+    --background: #93BFCF;
+    --sidebar: #6096B4;
     --texto-claro: #031f72;
   }
 
@@ -17,11 +17,20 @@ a {
     text-decoration: none !important;
     color: white !important;
     font-weight: 500;
+    border: 2px solid white; /* ou qualquer cor e espessura que quiser */
+    border-radius: 5px; 
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 
 a:hover{
-    color: #f0510d!important;
+    color: var(--texto-claro)!important;
     text-decoration: none;
+    background-color: #ffffff;
+    padding: 8px 12px; 
+    border-radius: 5px; 
+    display: inline-block;
 }
 
 p {
