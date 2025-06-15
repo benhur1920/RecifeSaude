@@ -26,7 +26,6 @@ def substituir_ponto_por_virgula_longitude_e_latitude(df):
     return df
 
 def converter_para_float_seguro(coluna):
-    import pandas as pd
     return pd.to_numeric(coluna.str.replace(',', '.'), errors='coerce')
 
 
@@ -35,35 +34,12 @@ def usar_title_para_deixar_primeira_letra_como_maiuscula(df):
     df = df.apply(lambda x: x.str.title() if x.dtype == "object" else x)
     return df
 
-def criar_a_coluna_opcao(df, nome_opcao):
-    df['Opção'] = nome_opcao
-    return df
 
-def criar_um_novo_DataFrame_com_as_colunas_desejadas_e_renomeando_as(df):
-   
-    df = df[['nome_oficial', 'endereço', 'bairro', 'fone', 'especialidade', 'horario', 'como_usar', 'latitude', 'longitude',
-                       'Opção']].rename(columns={'nome_oficial': 'Nome'})
-    return df
-
-def concatenar_DataFrames( hospital, usf, maternidade, ubs ):
-    dados = pd.concat([hospital, usf, maternidade, ubs], ignore_index=True)
-    return dados
-
-def Aplicar_capitalize_a_coluna_como_usar(dados):
-    dados['como_usar'] = dados['como_usar'].apply(str.capitalize)
-    return dados
 
 def salvar_o_DataFrame_no_arquivo_CSV_com_codificação_UTF_8_para_subir_para_o_BI(dados):
     dados.to_csv('ServicosSaude.csv', sep=';',encoding='utf-8-sig', index=False)
 
-def mensagem(mensagem):
-    """
-    Função para informar mensagem para o usuario
-    
-    Retorna:
-        Sem retorno
-    """
-    print(mensagem)
+
 
 def criar_a_coluna_Regiao(df):
     dicionario = {
@@ -121,46 +97,18 @@ def aplicando_capitalize_no_nome_das_colunas(df):
     df.columns = [col.strip().capitalize() for col in df.columns]
     return df
 
-def retirando_os_sinais_coluna_especialidade(df):
-    df['Especialidade'] = df['Especialidade'].astype(str).apply(unidecode)
-    return df
 
 def main():
-    urlhospital = 'http://dados.recife.pe.gov.br/dataset/6c77a814-7161-4eb5-9662-234642dc8cc1/resource/a2dab4d4-3a7b-4cce-b3a7-dd7f5ef22226/download/hospitais.csv'
-    urlusf = 'http://dados.recife.pe.gov.br/dataset/abc2d796-aa13-4ea0-b83a-13605ff98b87/resource/7ec4de7c-004c-4be1-88b1-80b70cf1250a/download/usf.csv'
-    urlmaternidade = 'http://dados.recife.pe.gov.br/dataset/95b78bdd-f2bc-4f30-90bd-c3f311ba555f/resource/666c2a03-d18d-4520-8afc-6ae6a8d7d0ed/download/maternidades.csv'
-    urlubs = 'http://dados.recife.pe.gov.br/dataset/39d3ab40-573d-42e7-b96e-0cc051695391/resource/54232db8-ed15-4f1f-90b0-2b5a20eef4cf/download/unidades-basica-saude.csv'
-    hospital = entrada_de_dados(urlhospital)
-    usf = entrada_de_dados(urlusf)
-    maternidade = entrada_de_dados(urlmaternidade)
-    ubs = entrada_de_dados(urlubs)
-    hospital = converter_latitude_e_longitude_para_string(hospital)
-    usf = converter_latitude_e_longitude_para_string(usf)
-    maternidade = converter_latitude_e_longitude_para_string(maternidade)
-    ubs = converter_latitude_e_longitude_para_string(ubs)
-    hospital = substituir_ponto_por_virgula_longitude_e_latitude(hospital)
-    usf = substituir_ponto_por_virgula_longitude_e_latitude(usf)
-    maternidade = substituir_ponto_por_virgula_longitude_e_latitude(maternidade)
-    ubs = substituir_ponto_por_virgula_longitude_e_latitude(ubs)
-    hospital = usar_title_para_deixar_primeira_letra_como_maiuscula(hospital)
-    usf = usar_title_para_deixar_primeira_letra_como_maiuscula(usf)
-    maternidade = usar_title_para_deixar_primeira_letra_como_maiuscula(maternidade)
-    ubs = usar_title_para_deixar_primeira_letra_como_maiuscula(ubs)
-    hospital = criar_a_coluna_opcao(hospital, 'Hospital')
-    usf = criar_a_coluna_opcao(usf, 'USF')
-    maternidade = criar_a_coluna_opcao(maternidade, 'Maternidade')
-    ubs = criar_a_coluna_opcao(ubs, 'UBS')
-    hospital = criar_um_novo_DataFrame_com_as_colunas_desejadas_e_renomeando_as(hospital)
-    usf = criar_um_novo_DataFrame_com_as_colunas_desejadas_e_renomeando_as(usf)
-    maternidade = criar_um_novo_DataFrame_com_as_colunas_desejadas_e_renomeando_as(maternidade)
-    ubs = criar_um_novo_DataFrame_com_as_colunas_desejadas_e_renomeando_as(ubs)
-    dados = concatenar_DataFrames(hospital, usf, maternidade, ubs)
-    dados =  Aplicar_capitalize_a_coluna_como_usar(dados)
+    url = 'http://dados.recife.pe.gov.br/dataset/4d3a3b39-9ea9-46ed-bf21-a2670de519c1/resource/7c613836-9edd-4c0f-bc72-495008dd29c3/download/info_escolas_2023_27122023.csv'
+    dados = entrada_de_dados(url)
+    dados = converter_latitude_e_longitude_para_string(dados)
+    dados = substituir_ponto_por_virgula_longitude_e_latitude(dados)
+    dados['latitude'] = converter_para_float_seguro(dados['latitude'])
+    dados['longitude'] = converter_para_float_seguro(dados['longitude'])
+    dados = usar_title_para_deixar_primeira_letra_como_maiuscula(dados)
     dados = criar_a_coluna_Regiao(dados)
     dados = aplicando_capitalize_no_nome_das_colunas(dados)
-    dados['Latitude'] = converter_para_float_seguro(dados['Latitude'])
-    dados['Longitude'] = converter_para_float_seguro(dados['Longitude'])
-    dados = retirando_os_sinais_coluna_especialidade(dados)
+    #dados = salvar_o_DataFrame_no_arquivo_CSV_com_codificação_UTF_8_para_subir_para_o_BI(dados)
     return dados
     #salvar_o_DataFrame_no_arquivo_CSV_com_codificação_UTF_8_para_subir_para_o_BI(dados)
 

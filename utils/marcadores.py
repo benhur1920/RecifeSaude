@@ -1,10 +1,10 @@
 import streamlit as st
 
-background = "#93BFCF"
-sidebar = "#6096B4"
-texto = "#031f72"
+background = "#002b36"
+sidebar = "#586e75"
+texto = "#fffddf"
 textoSideBar = background
 
 def divisor():
-    return st.markdown("<hr style='border:3px solid #F8F6F4;'>", unsafe_allow_html=True)
+    return st.markdown("<hr style='border:1px solid #fffddf;'>", unsafe_allow_html=True)
 

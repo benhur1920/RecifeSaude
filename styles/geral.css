@@ -1,9 +1,9 @@
 
 :root {
         
-    --background: #93BFCF;
-    --sidebar: #6096B4;
-    --texto-claro: #031f72;
+    --background: #002b36;
+    --sidebar: #586e75;
+    --texto-claro: #fffddf;
   }
 
 
@@ -25,7 +25,7 @@ a {
 }
 
 a:hover{
-    color: var(--texto-claro)!important;
+    color: var(--background)!important;
     text-decoration: none;
     background-color: #ffffff;
     padding: 8px 12px; 
@@ -42,6 +42,9 @@ p {
 
 ul {
     list-style-type: none;
+    color: var(--texto-claro) !important;
+    margin-top: 20px;
+    font-size: 20px !important;
 }
 
 hr {
@@ -63,7 +66,7 @@ footer {visibility: hidden;}
 header {visibility: hidden;}
 
 
-/* Cor de fundo principal */
+/* Cor do background do codigo  */
 .stApp {
     background-color: var(--background) !important; /* verde clarinho, por exemplo */
 }
@@ -71,7 +74,31 @@ header {visibility: hidden;}
 /* Cor de fundo da sidebar */
 section[data-testid="stSidebar"] {
     background-color: var(--sidebar) !important;  /* Exemplo: azul clarinho */
+    
 }
+/* alterar a cor dos icons da sidebar (interno) */
+section[data-testid="stSidebar"] button svg {
+    fill: var(--texto-claro) !important;
+}
+
+/* mudar a cor dos icon do sidebar */
+/* Força todos os botões com SVG no canto esquerdo */
+button > svg {
+    fill: var(--texto-claro) !important;
+    color: var(--texto-claro) !important;
+}
+
+/* Também o botão específico */
+button[title="Expand sidebar"],
+button[title="Toggle sidebar"] {
+    background-color: #555 !important;
+    border-radius: 8px !important;
+    padding: 6px !important;
+    z-index: 9999 !important;
+}
+
+
+
 
 .custom-menu-title {
     font-size: 22px;
@@ -79,3 +106,25 @@ section[data-testid="stSidebar"] {
     font-weight: bold;
     margin-bottom: 10px;
 }
+
+
+/* Alterar os valores dos cards*/
+/* Cor do label (título da métrica) */
+div[data-testid="stMetric"] > label {
+    color: #e4dada !important;
+}
+
+/* Cor do value (valor numérico) */
+div[data-testid="stMetric"] > div > div {
+    color: var(--background) !important;
+}
+
+/* Borda visível com cor contrastante */
+div[data-testid="stMetric"] {
+    border: 2px solid #ef4014 !important;  /* mesma cor do value */
+    border-radius: 8px;
+    padding: 12px;  /* só para garantir espaçamento */
+    background-color: var(--sidebar);  /* fundo escuro opcional para destacar */
+}
+
+
