@@ -60,11 +60,11 @@ h1, h2, h3 {
     color: var(--texto-claro) !important;
 }
 
-
+/*
 MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
-
+*/
 
 /* Cor do background do codigo  */
 .stApp {
