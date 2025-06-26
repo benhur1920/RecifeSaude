@@ -6,6 +6,29 @@ from utils.graficos import grafico_zona, grafico_bairro, grafico_tipo, grafico_m
 from utils.marcadores import divisor
 
 
+# Estilo CSS para cartões
+st.markdown("""
+    <style>
+    .card {
+        background-color: #e0f7fa; /* cor de fundo personalizada */
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #006064;
+    }
+    .card-title {
+        font-size: 18px;
+        margin-bottom: 0.5rem;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
+
+
 def graficos(df_filtrado):
 
     figura_zona = grafico_zona(df_filtrado)
