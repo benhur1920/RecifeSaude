@@ -1,26 +1,12 @@
 import streamlit as st
-from pathlib import Path
 from streamlit_option_menu import option_menu
 from utils import dashboards, sobre, dataframe
-from datetime import date
-from utils.totalizadores import hoje,df
-from utils.marcadores import texto,sidebar, background
+from utils.totalizadores import hoje, df
 
 st.set_page_config(
     layout="wide",
-    page_title="SaudeRecife")
-
-
-# Configurações Estruturais
-ROOT_DIR = Path(__file__).resolve().parent
-CSS_FILE = ROOT_DIR / "styles" / "geral.css"
-
-with open(CSS_FILE, "r", encoding="utf-8") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-
-# Mostra a data mais recente, importar dos totalizadores.py
-#st.write(f"📅 Última atualização dos dados: {ultima_data.strftime('%d/%m/%Y')}")
+    page_title="SaudeRecife"
+)
 
 def titulo_pagina():
     col1, col2 = st.columns([3, 1])
@@ -40,9 +26,7 @@ def titulo_pagina():
             </div>
             """,
             unsafe_allow_html=True
-        
         )
-        # Exibe a data no formato desejado
         st.write(f"📅 Dados atualizados em: {hoje.strftime('%d/%m/%Y')}")
 
 def aplicando_filtros(df_filtrado, nome_do_filtro):
@@ -52,62 +36,34 @@ def aplicando_filtros(df_filtrado, nome_do_filtro):
         df_filtrado = df_filtrado[df_filtrado[nome_do_filtro].isin(filtro)]
     return df_filtrado
 
-
 def criacao_navegacao_e_filtros():
-    
-    # Cópia do DataFrame original
     df_filtrado = df.copy()
 
-    # Sidebar: Menu + Filtros
     with st.sidebar:
-        st.markdown('<div class="custom-menu-title"><p>📡 Conheça</p></div>', unsafe_allow_html=True)
-
         selected = option_menu(
-            menu_title=None,  # Não usa o menu_title original
+            menu_title="Navegação",
             options=["Sobre", "Dashboards", "Dataframe"],
             icons=["info-circle", "bar-chart", "table"],
-            default_index=0,
-            styles={
-                "container": {"background-color": sidebar},
-                "nav-link": {
-                    "color": "#fffddf",
-                    "font-size": "18px",
-                    "hover-color": texto,
-                },
-                "nav-link-selected": {
-                    "background-color": "#ffffff",
-                    "color": background,
-                },
-            }
+            default_index=0
         )
 
-        
-        # Título dos filtros
-        st.markdown("<h1>Filtros</h1>", unsafe_allow_html=True)
-
-        # Filtro de Opção
+        st.markdown("### Filtros")
         df_filtrado = aplicando_filtros(df_filtrado, "Opção")
-
-        # Filtro de Zona
         df_filtrado = aplicando_filtros(df_filtrado, "Região")
-
-        # Filtro de Bairro
         df_filtrado = aplicando_filtros(df_filtrado, "Bairro")
 
-        
-    # Conteúdo principal
     if selected == "Sobre":
         sobre.mainSobre(df)
     elif selected == "Dashboards":
         dashboards.mainGraficos(df_filtrado)
     else:
         dataframe.mainDataframe(df_filtrado)
+
     return df_filtrado
 
 def main():
     titulo_pagina()
     criacao_navegacao_e_filtros()
 
-# Definição do programa principal será o main()
 if __name__ == '__main__':
     main()

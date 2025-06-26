@@ -1,17 +1,4 @@
 
 
 [theme]
-primaryColor = "#1f77b4"
-backgroundColor = "#1e1e1e"
-secondaryBackgroundColor = "#333333"
-textColor = "#fdfdfd"
-font = "sans serif"
-
-
-
-# Exemplos visuais rápidos:
-# Componente	                Depende de
-# Botão (st.button())	        primaryColor
-# Sidebar (st.sidebar.*)	    secondaryBackgroundColor
-# Fundo da página	            backgroundColor
-# Texto padrão	                textColor
+base="light"
