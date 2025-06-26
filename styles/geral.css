@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 :root {
-  --background: #002b36;
-  --sidebar: #586e75;
-  --texto-claro: #fffddf;
-  --destaque: #ef4014;
+  --background: #1e1e1e;        /* igual backgroundColor do config.toml */
+  --sidebar: #333333;           /* igual secondaryBackgroundColor do config.toml */
+  --texto-claro: #fdfdfd;       /* igual textColor do config.toml */
+  --destaque: #1f77b4;          /* igual primaryColor do config.toml */
 }
 
 * {
@@ -16,68 +17,77 @@ body, .stApp {
   color: var(--texto-claro) !important;
 }
 
+/* Títulos e textos padrão */
 h1, h2, h3, p, ul {
   color: var(--texto-claro) !important;
   font-size: 20px;
+  margin: 0 0 1rem 0;
 }
 
 a {
-  color: white !important;
+  color: var(--texto-claro) !important;
   font-weight: 500;
-  border: 2px solid white;
+  border: 2px solid var(--texto-claro);
   border-radius: 5px;
   padding: 8px 12px;
   display: inline-block;
   margin-bottom: 20px;
   font-size: 16px;
   text-decoration: none !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a:hover {
-  background-color: #fff;
+  background-color: var(--texto-claro);
   color: var(--background) !important;
 }
 
 hr {
   margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--sidebar);
 }
 
+/* Sidebar */
 section[data-testid="stSidebar"] {
   background-color: var(--sidebar) !important;
 }
 
-/* Ícones da sidebar */
+/* Ícones na sidebar e botões */
 section[data-testid="stSidebar"] svg,
 button > svg {
   fill: var(--texto-claro) !important;
   color: var(--texto-claro) !important;
 }
 
-/* Botão de expandir/recolher sidebar */
-@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
+/* Botão para expandir/recolher sidebar */
 button[data-testid="collapsedControl"] {
   font-family: 'Material Icons' !important;
   font-size: 24px !important;
-  color: white !important;
+  color: var(--texto-claro) !important;
   background-color: #555 !important;
   border-radius: 8px;
   position: fixed;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
 }
 
 button[data-testid="collapsedControl"]::before {
   content: "keyboard_double_arrow_right";
+  display: inline-block;
 }
 
-/* Métricas */
+/* Cards de métricas */
 div[data-testid="stMetric"] {
   border: 2px solid var(--destaque);
   border-radius: 8px;
   padding: 12px;
   background-color: var(--sidebar);
+  color: var(--texto-claro);
 }
 
 div[data-testid="stMetric"] > label {
@@ -92,10 +102,21 @@ div[data-testid="stMetric"] > div > div {
 .custom-menu-title {
   font-size: 22px;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--texto-claro);
   margin-bottom: 10px;
 }
 
+/* Oculta o header padrão do Streamlit */
 header[data-testid="stHeader"] {
-    display: none;
+  display: none;
+}
+
+/* Oculta menu principal padrão do Streamlit */
+#MainMenu {
+  visibility: hidden;
+}
+
+/* Oculta o footer padrão do Streamlit */
+footer {
+  visibility: hidden;
 }
