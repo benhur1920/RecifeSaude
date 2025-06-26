@@ -95,3 +95,7 @@ div[data-testid="stMetric"] > div > div {
   color: #ffffff;
   margin-bottom: 10px;
 }
+
+header[data-testid="stHeader"] {
+    display: none;
+}
