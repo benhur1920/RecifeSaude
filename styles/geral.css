@@ -1,143 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;600&display=swap');
 
 :root {
-        
-    --background: #002b36;
-    --sidebar: #586e75;
-    --texto-claro: #fffddf;
-  }
-
-
-@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&display=swap');
+  --background: #002b36;
+  --sidebar: #586e75;
+  --texto-claro: #fffddf;
+  --destaque: #ef4014;
+}
 
 * {
-    font-family: 'Readex Pro', sans-serif !important;
+  font-family: 'Readex Pro', sans-serif !important;
+}
+
+body, .stApp {
+  background-color: var(--background) !important;
+  color: var(--texto-claro) !important;
+}
+
+h1, h2, h3, p, ul {
+  color: var(--texto-claro) !important;
+  font-size: 20px;
 }
 
 a {
-    text-decoration: none !important;
-    color: white !important;
-    font-weight: 500;
-    border: 2px solid white; /* ou qualquer cor e espessura que quiser */
-    border-radius: 5px; 
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 16px;
+  color: white !important;
+  font-weight: 500;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 8px 12px;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-decoration: none !important;
 }
 
-a:hover{
-    color: var(--background)!important;
-    text-decoration: none;
-    background-color: #ffffff;
-    padding: 8px 12px; 
-    border-radius: 5px; 
-    display: inline-block;
-}
-
-p {
-    color: var(--texto-claro) !important;
-    margin-top: 20px;
-    font-size: 20px !important;
-}
-
-
-ul {
-    list-style-type: none;
-    color: var(--texto-claro) !important;
-    margin-top: 20px;
-    font-size: 20px !important;
+a:hover {
+  background-color: #fff;
+  color: var(--background) !important;
 }
 
 hr {
-    margin-top: 0px;
-    margin-bottom: 5%;
+  margin: 10px 0;
 }
 
-body {
-    background-color: #e3f2fd;
-}
-
-h1, h2, h3 {
-    color: var(--texto-claro) !important;
-}
-
-/*
-MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
-*/
-
-/* Cor do background do codigo  */
-.stApp {
-    background-color: var(--background) !important; /* verde clarinho, por exemplo */
-}
-
-/* Cor de fundo da sidebar */
 section[data-testid="stSidebar"] {
-    background-color: var(--sidebar) !important;  /* Exemplo: azul clarinho */
-    
-}
-/* alterar a cor dos icons da sidebar (interno) */
-section[data-testid="stSidebar"] button svg {
-    fill: var(--texto-claro) !important;
+  background-color: var(--sidebar) !important;
 }
 
-/* mudar a cor dos icon do sidebar */
-/* Força todos os botões com SVG no canto esquerdo */
+/* Ícones da sidebar */
+section[data-testid="stSidebar"] svg,
 button > svg {
-    fill: var(--texto-claro) !important;
-    color: var(--texto-claro) !important;
+  fill: var(--texto-claro) !important;
+  color: var(--texto-claro) !important;
 }
 
-/* Também o botão específico */
-button[title="Expand sidebar"],
-button[title="Toggle sidebar"] {
-    background-color: #555 !important;
-    border-radius: 8px !important;
-    padding: 6px !important;
-    z-index: 9999 !important;
+/* Botão de expandir/recolher sidebar */
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+button[data-testid="collapsedControl"] {
+  font-family: 'Material Icons' !important;
+  font-size: 24px !important;
+  color: white !important;
+  background-color: #555 !important;
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 
-
-
-
-.custom-menu-title {
-    font-size: 22px;
-    color: #031f72;  /* Laranja */
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-
-/* Alterar os valores dos cards*/
-/* Cor do label (título da métrica) */
-div[data-testid="stMetric"] > label {
-    color: #e4dada !important;
-}
-
-/* Cor do value (valor numérico) */
-div[data-testid="stMetric"] > div > div {
-    color: var(--background) !important;
-}
-
-/* Borda visível com cor contrastante */
-div[data-testid="stMetric"] {
-    border: 2px solid #ef4014 !important;  /* mesma cor do value */
-    border-radius: 8px;
-    padding: 12px;  /* só para garantir espaçamento */
-    background-color: var(--sidebar);  /* fundo escuro opcional para destacar */
-}
-
-/* Garante que o botão da sidebar exiba corretamente o ícone */
 button[data-testid="collapsedControl"]::before {
-    content: ''; /* Remove qualquer conteúdo textual */
+  content: "keyboard_double_arrow_right";
 }
 
-/* Força o estilo correto no botão */
-button[data-testid="collapsedControl"] > svg {
-    width: 24px !important;
-    height: 24px !important;
-    fill: white !important;
-    color: white !important;
-    display: block !important;
+/* Métricas */
+div[data-testid="stMetric"] {
+  border: 2px solid var(--destaque);
+  border-radius: 8px;
+  padding: 12px;
+  background-color: var(--sidebar);
 }
 
+div[data-testid="stMetric"] > label {
+  color: #e4dada !important;
+}
+
+div[data-testid="stMetric"] > div > div {
+  color: var(--background) !important;
+}
+
+/* Título do menu lateral */
+.custom-menu-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
