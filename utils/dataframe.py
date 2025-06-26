@@ -44,8 +44,9 @@ def dataframe(df_filtrado):
     st.markdown("""
     <style>
     .stDownloadButton button {
-        color: texto !important;
-        background-color:  #586e75!important;
+        color: #000000 !important;
+        background-color:  #ffffff!important;
+        size: 22px !importante
     }
     </style>
     """, unsafe_allow_html=True)
@@ -55,11 +56,11 @@ def dataframe(df_filtrado):
     with col1:
         csv = filtro_dados.to_csv(index=False, encoding='utf-8-sig').encode('utf-8-sig')
         st.download_button(
-            label="📥 Baixar CSV",
+            label="Download CSV",
             data=csv,
-            file_name='unidades_ensino_recife.csv',
-            mime='text/csv',
-            
+            file_name="data.csv",
+            mime="text/csv",
+            icon=":material/download:",
         )
     with col2:
         st.metric("Total linhas filtradas ", value=(totalLinhas), border=True)

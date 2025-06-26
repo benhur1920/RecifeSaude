@@ -8,6 +8,62 @@ st.set_page_config(
     page_title="SaudeRecife"
 )
 
+# Estilos
+
+st.markdown(
+    """
+    <style>
+    /* Fonte global */
+    html, body, [class*="css"] {
+        font-family: 'sans-serif' !important;
+        background-color: #f0f2f6; /* cor de fundo clara */
+    }
+
+    /* Remove margem superior (espaço em branco) */
+    .block-container {
+        padding-top: 1rem;
+    }
+
+    /* Sidebar personalizada */
+    section[data-testid="stSidebar"] {
+        background-color: #B4BEC9; /* azul escuro */
+        color: white;
+    }
+
+    /* Títulos e textos na sidebar */
+    section[data-testid="stSidebar"] .css-1d391kg {
+        color: white;
+    }
+
+    /* Elementos de input e botão */
+    .stButton>button {
+        background-color: #3a8dad;
+        color: white;
+        border-radius: 10px;
+        padding: 0.5em 1em;
+    }
+
+    .stButton>button:hover {
+        background-color: #2c6b80;
+        color: white;
+    }
+
+    /* Links */
+    a {
+        text-decoration: none;
+        color: #1f6e8c;
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: #3a8dad;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
 def titulo_pagina():
     col1, col2 = st.columns([3, 1])
     with col1:
