@@ -1,4 +1,8 @@
-
-
 [theme]
-base="light"
+base = "light"  # ou "dark"
+primaryColor = "#1f77b4"  # Cor de botões e destaques
+backgroundColor = "#ffffff"  # Fundo da página
+secondaryBackgroundColor = "#f0f2f6"  # Fundo da sidebar e caixas
+textColor = "#000000"  # Cor do texto geral
+font = "sans serif"  # Pode ser: "sans serif", "serif", "monospace"
+
