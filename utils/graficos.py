@@ -1,7 +1,7 @@
 import matplotlib as pl
 import plotly.express as px
 import streamlit as st
-from utils.marcadores import texto, background, sidebar
+from utils.marcadores import texto, background
 
 
 

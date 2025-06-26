@@ -1,7 +1,7 @@
 import matplotlib as pl
 import plotly.express as px
 import streamlit as st
-from utils.totalizadores import *
+from utils.totalizadores import calculo_total_Maternidades, calculo_total_hospitais, calculo_total_unidades, calculo_total_USB, calculo_total_USF
 from utils.graficos import grafico_zona, grafico_bairro, grafico_tipo, grafico_mapa
 from utils.marcadores import divisor
 

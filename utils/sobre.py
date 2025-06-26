@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from utils.totalizadores import *
+from utils.totalizadores import calculo_total_hospitais, calculo_total_unidades, calculo_total_USB, calculo_total_USF, calculo_total_Maternidades
 from utils.marcadores import divisor
 
 def sobre(df):

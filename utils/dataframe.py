@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.marcadores import divisor, sidebar, texto
+from utils.marcadores import divisor
 from utils.totalizadores import calular_a_quantidade_de_colunas, calculo_total_unidades
 
 
