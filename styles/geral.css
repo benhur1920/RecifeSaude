@@ -61,7 +61,7 @@ h1, h2, h3 {
 }
 
 
-#MainMenu {visibility: hidden;}
+MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
 
