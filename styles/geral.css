@@ -127,4 +127,17 @@ div[data-testid="stMetric"] {
     background-color: var(--sidebar);  /* fundo escuro opcional para destacar */
 }
 
+/* Garante que o botão da sidebar exiba corretamente o ícone */
+button[data-testid="collapsedControl"]::before {
+    content: ''; /* Remove qualquer conteúdo textual */
+}
+
+/* Força o estilo correto no botão */
+button[data-testid="collapsedControl"] > svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: white !important;
+    color: white !important;
+    display: block !important;
+}
 
