@@ -1,43 +1,45 @@
 import streamlit as st
-from streamlit_option_menu import option_menu
-from utils import dashboards, sobre, dataframe
-from utils.totalizadores import hoje, df
 
 st.set_page_config(
     layout="wide",
     page_title="SaudeRecife"
 )
 
-# Estilos
+
+from streamlit_option_menu import option_menu
+from utils import dashboards, sobre, dataframe
+from utils.totalizadores import hoje, df
+
+
 
 st.markdown(
     """
     <style>
-    /* Fonte global */
+    /* ============================== */
+    /* === ESTILO PARA TEMA CLARO === */
+    /* ============================== */
+
     html, body, [class*="css"] {
         font-family: 'sans-serif' !important;
-        background-color: #f0f2f6; /* cor de fundo clara */
+        background-color: #f0f2f6;
+        color: #000000;
     }
 
-    /* Remove margem superior (espaço em branco) */
     .block-container {
         padding-top: 1rem;
     }
 
-    /* Sidebar personalizada */
     section[data-testid="stSidebar"] {
-        background-color: #B4BEC9; /* azul escuro */
+        background-color: #B4BEC9;
         color: white;
     }
 
-    /* Títulos e textos na sidebar */
     section[data-testid="stSidebar"] .css-1d391kg {
         color: white;
     }
 
-    /* Elementos de input e botão */
     .stButton>button {
-        background-color: #3a8dad;
+        
         color: white;
         border-radius: 10px;
         padding: 0.5em 1em;
@@ -48,7 +50,6 @@ st.markdown(
         color: white;
     }
 
-    /* Links */
     a {
         text-decoration: none;
         color: #1f6e8c;
@@ -58,11 +59,53 @@ st.markdown(
     a:hover {
         color: #3a8dad;
     }
+
+    
+
+    /* ============================== */
+    /* === ESTILO PARA TEMA ESCURO === */
+    /* ============================== */
+
+    @media (prefers-color-scheme: dark) {
+
+        html, body, [class*="css"] {
+            background-color: #0e1117 !important;
+            color: #f5f5f5 !important;
+        }
+
+        section[data-testid="stSidebar"] {
+            background-color: #1f2937;
+            color: white;
+        }
+
+        section[data-testid="stSidebar"] .css-1d391kg {
+            color: white;
+        }
+
+        .stButton>button {
+            background-color: #446d75;
+            color: white;
+        }
+
+        .stButton>button:hover {
+            background-color: #5a8b96;
+        }
+
+        a {
+            color: #90cdf4;
+        }
+
+        a:hover {
+            color: #63b3ed;
+        }
+
+        
+    }
+
     </style>
     """,
     unsafe_allow_html=True
 )
-
 
 def titulo_pagina():
     col1, col2 = st.columns([3, 1])

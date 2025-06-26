@@ -16,7 +16,7 @@ def sobre(df):
     imagem_path1 = os.path.join(os.path.dirname(__file__), '..', 'images', 'Hospital_da_mulher.jpg')
     
 
-    st.markdown("<h2 style='text-align: center; color: #0b3d91;'>Panorama da Saúde Municipal do Recife</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Panorama da Saúde Municipal do Recife</h2>", unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
 
     # Primeira seção com imagem e texto
