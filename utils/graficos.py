@@ -93,21 +93,21 @@ def grafico_tipo(df):
             st.warning("Não há dados disponíveis para gerar o gráfico de região.")
             return None
     
-    df_bairro = df.groupby('Tipo').size().reset_index(name='TOTAL')
+    df_bairro = df.groupby('Opção').size().reset_index(name='TOTAL')
     df_bairro = df_bairro.sort_values('TOTAL', ascending=False)
 
     fig4 = px.pie(
         df_bairro,
-        names='Tipo',
+        names='Opção',
         values='TOTAL',
         title='Tipos de unidades de ensino'
     )
 
-    fig4.update_traces(textposition='inside', textinfo='percent+label')
+    fig4.update_traces(textposition='inside', textinfo='percent+label', textfont=dict(size=22) )
 
     fig4.update_layout(
     title={
-        'text': 'Tipos de unidades de ensino',
+        'text': 'Tipos de unidades de saúde',
         'x': 0.5,
         'xanchor': 'center',
         'font': {
@@ -143,17 +143,17 @@ def grafico_mapa(df):
     
     fig3 = px.scatter_mapbox(
         df.dropna(subset=['Latitude', 'Longitude']),
-        hover_name='Escola',
+        hover_name='Nome',
         hover_data={
-            'Tipo': True,
+            'Opção': True,
             'Região': True,
             'Bairro': True,
-            'Rua': True,
-            'Numero': True,
+            'Endereço': True,
+            'Especialidade': True,
         },
         lat='Latitude',
         lon='Longitude',
-        color='Tipo',
+        color='Opção',
         zoom=11,
         height=700
     )
@@ -165,7 +165,7 @@ def grafico_mapa(df):
     mapbox_center={"lat": -8.0476, "lon": -34.8770},
 
     legend=dict(
-        title_text='Tipo de Escola',
+        title_text='Tipo de Unidade de saúde',
         title_font=dict(size=20, color=texto),
         font=dict(size=12, color=texto),
         orientation='h',           # ← Horizontal
@@ -193,157 +193,6 @@ def grafico_mapa(df):
     return fig3
 
 
-# Criando o gráfico de distribuicao por climatizacao
-def grafico_climatizacao(df):
-        
-        if df.empty or 'Região' not in df.columns or 'Bairro' not in df.columns:
-            st.warning("Não há dados disponíveis para gerar o gráfico de região.")
-            return None
-        
-        df_climatizacao = df.groupby('Escola_climatizada').size().reset_index(name='TOTAL')
-        df_climatizacao = df_climatizacao.sort_values('TOTAL', ascending=False)
-
-        fig5 =  px.bar(
-            df_climatizacao,
-            x='Escola_climatizada',
-            y='TOTAL',
-            labels={'Escola_climatizada': 'Escola climatizada'},
-            
-        )
-        fig5.update_layout(
-            title={
-                'text': 'Escolas climatizadas',
-                'x': 0.5,
-                'xanchor': 'center',
-                'font': {
-                    'size': 22,
-                    'color': texto
-                }
-            },  # <--- essa vírgula aqui é importante para separar os parâmetros
-            plot_bgcolor=background,
-            paper_bgcolor=background,
-            font=dict(color=texto),
-            xaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-            yaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-            modebar=dict(
-            bgcolor=background,
-            color=texto,
-            activecolor=texto
-            )
-        )
-
-        return fig5
-
-# Criando o gráfico de distribuicao por sala de recuros
-def grafico_sala(df):
-        
-        if df.empty or 'Região' not in df.columns or 'Bairro' not in df.columns:
-            st.warning("Não há dados disponíveis para gerar o gráfico de região.")
-            return None
-        
-        df_sala = df.groupby('Sala_recurso').size().reset_index(name='TOTAL')
-        df_sala = df_sala.sort_values('TOTAL', ascending=False)
-
-        fig6 =  px.bar(
-            df_sala,
-            x='Sala_recurso',
-            y='TOTAL',
-            labels={'Sala_recurso': 'Sala recurso'},
-            
-        )
-        fig6.update_layout(
-            title={
-                'text': 'Escolas com salas de recursos',
-                'x': 0.5,
-                'xanchor': 'center',
-                'font': {
-                    'size': 22,
-                    'color': texto
-                }
-            },  # <--- essa vírgula aqui é importante para separar os parâmetros
-            plot_bgcolor=background,
-            paper_bgcolor=background,
-            font=dict(color=texto),
-            xaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-            yaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-
-            modebar=dict(
-            bgcolor=background,
-            color=texto,
-            activecolor=texto
-            )
-        )
-
-        return fig6
-
-# Criando o gráfico de distribuicao por Bibliotecas
-def grafico_bibliotecas(df):
-        
-        if df.empty or 'Região' not in df.columns or 'Bairro' not in df.columns:
-            st.warning("Não há dados disponíveis para gerar o gráfico de região.")
-            return None
-        
-        df_bibliotecas = df.groupby('Biblioteca').size().reset_index(name='TOTAL')
-        df_bibliotecas = df_bibliotecas.sort_values('TOTAL', ascending=False)
-
-        fig7 = px.bar(
-            df_bibliotecas,
-            x='Biblioteca',
-            y='TOTAL',
-        )
-        fig7.update_layout(
-            title={
-                'text': 'Escolas com Bibliotecas',
-                'x': 0.5,
-                'xanchor': 'center',
-                'font': {
-                    'size': 22,
-                    'color': texto
-                }
-            },
-            plot_bgcolor=background,
-            paper_bgcolor=background,
-            font=dict(color=texto),
-            xaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-            yaxis=dict(
-                showgrid=False,
-                zeroline=False,
-                tickfont=dict(color=texto),
-                title_font=dict(color=texto, size=16)
-            ),
-            modebar=dict(
-            bgcolor=background,
-            color=texto,
-            activecolor=texto
-            )
-        )
-
-        return fig7
 
 
 

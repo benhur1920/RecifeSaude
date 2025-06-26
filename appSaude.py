@@ -8,7 +8,7 @@ from utils.marcadores import texto,sidebar, background
 
 st.set_page_config(
     layout="wide",
-    page_title="EscolasRecife")
+    page_title="SaudeRecife")
 
 
 # Configurações Estruturais
@@ -26,7 +26,7 @@ def titulo_pagina():
     col1, col2 = st.columns([3, 1])
     with col1:
         st.markdown(
-            "<h1>Unidades de ensino do Recife</h1>"
+            "<h1>Unidades de Saúde do Recife</h1>"
             "<p>Fonte: Dados abertos da Prefeitura do Recife</p>",
             unsafe_allow_html=True
         )
@@ -34,7 +34,7 @@ def titulo_pagina():
         st.markdown(
             """
             <div style="margin-top: 40px;">
-                <a href="https://dados.recife.pe.gov.br/" target="_blank">
+                <a href="http://dados.recife.pe.gov.br/dataset?q=saude&sort=score+desc%2C+metadata_modified+desc" target="_blank">
                     🛢️ Acessar fonte dos dados
                 </a>
             </div>
@@ -45,6 +45,12 @@ def titulo_pagina():
         # Exibe a data no formato desejado
         st.write(f"📅 Dados atualizados em: {hoje.strftime('%d/%m/%Y')}")
 
+def aplicando_filtros(df_filtrado, nome_do_filtro):
+    opcoes = sorted(df_filtrado[nome_do_filtro].dropna().unique())
+    filtro = st.multiselect(f"Selecione {nome_do_filtro}", opcoes, placeholder="Selecione uma opção")
+    if filtro:
+        df_filtrado = df_filtrado[df_filtrado[nome_do_filtro].isin(filtro)]
+    return df_filtrado
 
 
 def criacao_navegacao_e_filtros():
@@ -80,35 +86,15 @@ def criacao_navegacao_e_filtros():
         st.markdown("<h1>Filtros</h1>", unsafe_allow_html=True)
 
         # Filtro de Opção
-        tipo = sorted(df_filtrado['Tipo'].dropna().unique())
-        filtro_tipo = st.multiselect('Selecione o tipo de escola', tipo, placeholder="Selecione uma opção")
-        if filtro_tipo:
-            df_filtrado = df_filtrado[df_filtrado['Tipo'].isin(filtro_tipo)]
+        df_filtrado = aplicando_filtros(df_filtrado, "Opção")
 
         # Filtro de Zona
-        zonas_disponiveis = sorted(df_filtrado['Região'].dropna().unique())
-        filtro_zona = st.multiselect('Selecione a região', zonas_disponiveis, placeholder="Selecione uma opção")
-        if filtro_zona:
-            df_filtrado = df_filtrado[df_filtrado['Região'].isin(filtro_zona)]
+        df_filtrado = aplicando_filtros(df_filtrado, "Região")
 
         # Filtro de Bairro
-        bairros_disponiveis = sorted(df_filtrado['Bairro'].dropna().unique())
-        filtro_bairro = st.multiselect('Selecione o bairro', bairros_disponiveis, placeholder="Selecione uma opção")
-        if filtro_bairro:
-            df_filtrado = df_filtrado[df_filtrado['Bairro'].isin(filtro_bairro)]
+        df_filtrado = aplicando_filtros(df_filtrado, "Bairro")
 
-        # Filtro de Climatização
-        Climatizacao_disponiveis = sorted(df_filtrado['Escola_climatizada'].dropna().unique())
-        filtro_climatizacao = st.multiselect('Selecione o tipo de climatização', Climatizacao_disponiveis, placeholder="Selecione uma opção")
-        if filtro_climatizacao:
-            df_filtrado = df_filtrado[df_filtrado['Escola_climatizada'].isin(filtro_climatizacao)]
-
-        # Filtro de Biblioteca
-        Biblioteca_disponiveis = sorted(df_filtrado['Biblioteca'].dropna().unique())
-        filtro_biblioteca = st.multiselect('Selecione se possui biblioteca', Biblioteca_disponiveis, placeholder="Selecione uma opção")
-        if filtro_biblioteca:
-            df_filtrado = df_filtrado[df_filtrado['Biblioteca'].isin(filtro_biblioteca)]        
-
+        
     # Conteúdo principal
     if selected == "Sobre":
         sobre.mainSobre(df)
