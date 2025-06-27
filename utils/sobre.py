@@ -13,7 +13,7 @@ def sobre(df):
     
     
     # Imagens
-    imagem_path1 = os.path.join(os.path.dirname(__file__), '..', 'images', 'Hospital_da_mulher.jpg')
+    imagem_path1 = os.path.join(os.path.dirname(__file__), '..', 'images', 'Hospital.jpg')
     
 
     st.markdown("<h2 style='text-align: center;'>Panorama da Saúde Municipal do Recife</h2>", unsafe_allow_html=True)
